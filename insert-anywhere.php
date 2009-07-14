@@ -63,7 +63,7 @@ function config_page() {
 	
 	?><div class="wrap">
 	<h2><?php _e('Insert Codes to Anywhere', 'insert-anywhere'); ?></h2>
-	<h3><?php _e('Where and what do you want to insert your code?', 'insert-anywhere'); ?></h3>
+	<h3><?php _e('Where and what do you want to insert?', 'insert-anywhere'); ?></h3>
 	<form method="post" action="options.php">
 		<?php wp_nonce_field('update-options'); ?>
 		<table class="form-table">
