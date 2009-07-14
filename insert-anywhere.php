@@ -3,7 +3,7 @@
 Plugin Name: Insert Codes
 Plugin URI: http://jiehan.org
 Description: Insert your code into the place you want, with no need of editing themes!
-Version: 0.2
+Version: 0.3
 Author: Jiehan Zheng
 Author URI: http://jiehan.org
 */
@@ -25,14 +25,14 @@ function add_head() {
 	global $code;
 	echo $code['head'];
 }
-function add_post() {
+function add_post($content) {
 	global $code;
 	global $only_single;
 	if($only_single['post']) {
 		if(is_single())
-			echo $code['post_top'] . get_the_content() . $code['post_bottom'];
-		else echo get_the_content();
-	} else echo $code['post_top'] . get_the_content() . $code['post_bottom'];
+			return $code['post_top'] . $content . $code['post_bottom'];
+		else return $content;
+	} else return $code['post_top'] . $content . $code['post_bottom'];
 }
 function add_foot() {
 	global $code;
@@ -42,7 +42,7 @@ function add_foot() {
 if($code['head'] != '')
 	add_action('wp_head', 'add_head');
 if($code['post_top'] != '' || $code['post_bottom'] != '')
-	add_action('the_content', 'add_post');
+	add_filter('the_content', 'add_post');
 if($code['foot'] != '')
 	add_action('wp_footer', 'add_foot');
 
